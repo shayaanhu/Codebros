@@ -6,22 +6,23 @@ for i in range(t):
     a = list(map(int, input().split()))
 
     valleys = 0
-    i = 1
-    while(i < len(a) - 1):
-        if (a[i] == a[i + 1] and a[i] == 1) or ((a[i - 1] > a[i] < a[i + 1])):
-            l = i - 1
-            while (i < len(a) - 2 and a[i] == a[i + 1]):
-                r = i + 2
-                print("l", l, "r", r)
-                if (a[r] > a[l]):
-                    valleys += 1
-                i += 1
-        # elif (a[i - 1] > a[i] < a[i + 1]):
-        #     valleys += 1
-        i += 1
+    high = 0
+    low = 0
+    while (high < n):
+        while(high < n - 1 and a[high] == a[high + 1]):
+            high += 1
+        if (low == 0 or a[low - 1] > a[low]) and (high == n - 1 or a[high + 1] > a[high]):
+            # print("Low:", low, "High:", high)
+            valleys += 1
+        low = high + 1
+        high += 1
 
-    final.append(valleys)
+    if valleys == 1:
+        final.append("YES")
+    else:
+        final.append("NO")
 
-print(final)
+for i in final:
+    print(i)
 
 
