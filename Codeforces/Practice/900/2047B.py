@@ -27,3 +27,6 @@ for _ in range(t):
 
 for result in final:
     print(result)
+
+    
+
