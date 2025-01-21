@@ -33,26 +33,26 @@
 # --- Saad's submission --- #
 for __ in range(int(input())):
 
-  n, m = map(int, input().split())
-  lst = []
+	n, m = map(int, input().split())
+	lst = []
 
-  for _ in range(n):
-    lst.append(sorted(list(map(int, input().split()))))
-  
-  p = [0] * n
-  flag = True
+	for _ in range(n):
+		lst.append(sorted(list(map(int, input().split()))))
+	
+	p = [0] * n
+	flag = True
 
-  for i in range(n):
-    cowCards = lst[i]
-    minCard = cowCards[0]
-    
-    for j in range(1, m):
-      if minCard + n * j != cowCards[j]:
-        flag = False
-    if flag:
-      p[minCard] = i + 1
-  
-  if flag:
-    print(*p)
-  else:
-    print(-1)
+	for i in range(n):
+		cowCards = lst[i]
+		minCard = cowCards[0]
+		
+		for j in range(1, m):
+			if minCard + n * j != cowCards[j]:
+				flag = False
+		if flag:
+			p[minCard] = i + 1
+	
+	if flag:
+		print(*p)
+	else:
+		print(-1)
