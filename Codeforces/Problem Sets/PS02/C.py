@@ -7,7 +7,7 @@ for _ in range(t):
 
     attacks = list(map(int, input().split()))
 
-    low, high = 0, 1e18
+    low, high = 0, h
     while low <= high:
         mid = (low + high) // 2
         total_damage = 0
