@@ -6,6 +6,7 @@ final = []
 for _ in range(t):
     n = int(input())
     nums = list(map(int, input().split()))
+    
     if math.sqrt(sum(nums)).is_integer():
         final.append("YES")
     else:
