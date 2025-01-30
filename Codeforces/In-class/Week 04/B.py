@@ -2,12 +2,17 @@ for _ in range(int(input())):
     n, m, k = map(int, input().split())
     s = input()
     
-    i, count = 0, 0
-    while i <= n - m:
-        if s[i:i + m] == '0' * m:
+    operations, count, i = 0, 0, 0
+    while i < n:
+        if s[i] == '0':
             count += 1
-            i += m + k - 1
+            if count == m:
+                operations += 1
+                count = 0
+                i += k  
+                continue
         else:
-            i += 1
-        
-    print(count)
+            count = 0
+        i += 1
+    
+    print(operations)
