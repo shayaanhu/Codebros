@@ -1,17 +1,21 @@
 for _ in range(int(input())):
     n, k = map(int, input().split())
-    a = sorted(list(map(int, input().split())))
+    a = sorted(map(int, input().split()))
 
-    print(a)
+    prefix_sum = [0] * (n + 1)
+    for i in range(n):
+        prefix_sum[i + 1] = prefix_sum[i] + a[i]
 
-    i, j = 0, n - 1
-    while k > 0:
+    max_sum = 0
+    for min_element in range(k + 1):
+        max_element = k - min_element
+        remaining_elements = 0
 
-        if a[i] + a[i + 1] < a[j]:
-            i += 2
+        if min_element == 0:
+            remaining_elements = prefix_sum[n - max_element]
         else:
-            j -= 1
-        
-        k -= 1
+            remaining_elements = prefix_sum[n - max_element] - prefix_sum[2 * min_element]
 
-    print(sum(a[i : j + 1]))
+        max_sum = max(max_sum, remaining_elements)
+
+    print(max_sum)
