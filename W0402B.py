@@ -4,15 +4,23 @@ for _ in range(int(input())):
     s = input()
     i = 0
 
+    # x = s.count('0'*m)
+    # print(round(x/k))
+    # y = s.count('0'*(m+1))
+    # print(x)
     x = 0
-    for i in range(0, n, m):
-        if (i+m+1 < n and s[i+m+1] == '0'):
+    while i < n-m:
+        if s[i:i+m] == '0'*m:
             x += 1
             i += m+k-1
-        x += s.count('0'*m, i, i+m)
-    # x = s.count('0'*m)
+        else:
+            i += 1
     print(x)
-    print(math.floor(x/k))
+        # x += s.count('0'*m, i, i+m)
+        # i += m+k-1
+        # if (i+m+1 < n and s[i+m+1] == '0'):
+        #     x -= 1
+            # i += m+k-1
     # while i < n:
     # x = 0
     # while i < n:
