@@ -10,5 +10,4 @@ for _ in range(int(input())):
             i += k
             count += 1
             
-    print(count)
-            
+    print(count)  
