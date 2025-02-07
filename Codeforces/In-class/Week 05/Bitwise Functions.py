@@ -43,3 +43,17 @@ def countSet(n):
         n >>= 1
         
     return ans
+
+def has_even_parity (n):
+    count = 0
+    while n:
+        count += n & 1
+        n >>= 1 
+    return count % 2 == 0
+
+def clear_3rd_bit ( n):
+    return n & ~( 1 << 3 )
+
+def multiply_by_4 ( n):
+    # return n << 1 + n # BUG : Incorrect operator precedence
+    return n << 2
