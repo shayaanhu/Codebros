@@ -36,7 +36,6 @@ if os.path.exists("input.txt"):
 # then it's added to the sum (+)
 # if it's 0, then it's subtracted (-)
 
-
 n = inint()
 angles = []
 for i in range(n):

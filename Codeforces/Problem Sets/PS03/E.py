@@ -28,7 +28,7 @@ if os.path.exists("input.txt"):
 # --- END TEMPLATE --- #
 
 n, k, q = invars()
-max = int(2e5)
+max = int(2e5) + 2
 frequencies = [0] * max
 
 for i in range(n):

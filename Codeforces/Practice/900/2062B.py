@@ -40,4 +40,3 @@ for _ in range(inint()):
         print("YES")
     else:
         print("NO")
-
