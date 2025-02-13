@@ -26,6 +26,7 @@ if os.path.exists("input.txt"):
     sys.stdin = open("input.txt", "r")
 
 # --- END TEMPLATE --- #
+
 n, m, k = invars()
 a = inlist()
 
