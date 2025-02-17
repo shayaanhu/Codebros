@@ -1,10 +1,11 @@
 Bands:
-    Band 1: 5
+    Band 1: 6
     Band 2: 3
     Band 3: 0
     Band 4: 0
 
 Lifetime questions completed:
+    - 2A
     - 4A, 4B, 4C1 and 4C2
     - 2A
     - 1+2A, 1+2B
