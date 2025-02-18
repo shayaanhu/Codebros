@@ -36,3 +36,24 @@ if os.path.exists(input_path):
 #     sys.stdin = open("input.txt", "r")
 
 # --- END TEMPLATE --- #
+
+for _ in range(inint()):
+    n = inint()
+    s = instr()
+
+    firstA = -1
+    for i in range(n):
+        if s[i] == 'A':
+            firstA = i
+            break
+
+    lastB = -1
+    for i in range(n - 1, -1, -1):
+        if s[i] == 'B':
+            lastB = i
+            break
+
+    if firstA == -1 or lastB == -1:
+        print(0)
+    else:
+        print(max(0, lastB - firstA))
