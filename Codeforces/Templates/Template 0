@@ -21,8 +21,16 @@ def invars():
     return(map(int,input().split()))
 
 # -- TESTING SECTION -- #
-
-if os.path.exists("input.txt"):
-    sys.stdin = open("input.txt", "r")
+    
+base_path = os.path.dirname(os.path.abspath(__file__))
+from pathlib import Path
+base_path_2 = Path(__file__).parent
+input_path = os.path.join(base_path, "input.txt")
+if os.path.exists(input_path):  
+    sys.stdin = open(input_path, "r")
+    
+# Alternate
+# if os.path.exists("input.txt"):
+#     sys.stdin = open("input.txt", "r")
 
 # --- END TEMPLATE --- #

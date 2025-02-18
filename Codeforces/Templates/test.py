@@ -4,6 +4,7 @@
 
 import sys
 import os
+from pathlib import Path
 
 # -- INPUT SECTION -- #
 
@@ -22,9 +23,11 @@ def invars():
 
 # -- TESTING SECTION -- #
 
-if os.path.exists("input.txt"):  
-    sys.stdin = open("input.txt", "r")
-
+base_path = os.path.dirname(os.path.abspath(__file__))
+input_path = os.path.join(base_path, "input.txt")
+if os.path.exists(input_path):  
+    sys.stdin = open(input_path, "r")
+    
 # --- END TEMPLATE --- #
 
 for _ in range(inint()):
