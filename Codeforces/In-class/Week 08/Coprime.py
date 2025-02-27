@@ -2,9 +2,9 @@
 
 # -- IMPORTS -- #
 
+import math
 import sys
 import os
-import math
 
 # -- INPUT SECTION -- #
 
@@ -37,3 +37,15 @@ if os.path.exists(input_path):
 #     sys.stdin = open("input.txt", "r")
 
 # --- END TEMPLATE --- #
+
+for _ in range(inint()):
+    n = inint()
+    a = inlist()
+    ans = -1
+    
+    for i in range(n):
+        for j in range(i, n):
+            if math.gcd(a[i], a[j]) == 1:
+                ans = max(ans, i + j + 2)
+    
+    print(ans)            
