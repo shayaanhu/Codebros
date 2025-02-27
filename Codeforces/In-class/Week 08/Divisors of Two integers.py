@@ -5,6 +5,8 @@
 import sys
 import os
 import math
+import bisect
+from collections import Counter
 
 # -- INPUT SECTION -- #
 
@@ -38,20 +40,21 @@ if os.path.exists(input_path):
 
 # --- END TEMPLATE --- #
 
-n = int(input())
+n = inint()
 a = inlist()
 
-max_element = max(a)
-already_seen = set()
-second_elements = set()
-for i in a:
-    if i == max_element:
-        continue
-    elif i in already_seen:
-        second_elements.add(i)
-    else:
-        already_seen.add(i)
-        
-print(already_seen)
-print(second_elements)
-print(max_element, max(second_elements))
+freq = Counter(a)
+x = max(a)
+
+for d in range(1, int(math.sqrt(x)) + 1):
+    if x % d == 0:
+        if d in freq and freq[d] > 0:
+            freq[d] -= 1
+            
+        other = x // d
+        if other != d and other in freq and freq[other] > 0:
+            freq[other] -= 1
+
+y = max(d for d in freq if freq[d] > 0)
+
+print(x, y)
