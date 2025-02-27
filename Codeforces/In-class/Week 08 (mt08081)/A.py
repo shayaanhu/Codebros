@@ -47,3 +47,11 @@ for _ in range(int(input())):
         print(-1)
     else:
         print(maxi)
+
+# a = [1, 4, 6, 5, 4, 3, 2, 7, 9, 8, 2, 7]
+# b = dict(a)
+# print(b)
+# a = set(a)
+# print(a)
+# a = list(a)
+# print(a)
