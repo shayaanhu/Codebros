@@ -41,11 +41,17 @@ if os.path.exists(input_path):
 for _ in range(inint()):
     n = inint()
     a = inlist()
+    
+    last_occurrence = {}
+    for i, val in enumerate(a):
+        last_occurrence[val] = i + 1
+
     ans = -1
-    
-    for i in range(n):
-        for j in range(i, n):
-            if math.gcd(a[i], a[j]) == 1:
-                ans = max(ans, i + j + 2)
-    
+    for x in last_occurrence:
+        for y in last_occurrence:
+            if x == y and x != 1:
+                continue
+            if math.gcd(x, y) == 1:
+                ans = max(ans, last_occurrence[x] + last_occurrence[y])
+        
     print(ans)            
