@@ -39,3 +39,14 @@ if os.path.exists(input_path):
 #     sys.stdin = open("input.txt", "r")
 
 # --- END TEMPLATE --- #
+
+n = inint()
+a = inlist()
+
+ans = True
+for i in range(n - 1):
+    if a[i + 1] <= a[i]:
+        ans = False
+        break
+
+print('Yes' if ans else 'No')

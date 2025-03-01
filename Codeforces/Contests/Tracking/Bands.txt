@@ -1,6 +1,6 @@
 Bands:
-    Band 1: 6 [COMPLETE]
-    Band 2: 3
+    Band 1: 6+ [COMPLETE]
+    Band 2: 4
     Band 3: 0
     Band 4: 0
 
@@ -12,4 +12,9 @@ Codeforces lifetime questions completed:
     - 3A, 3C
 
 Atcoder lifetime questions completed:
-    -
+    - 100, 200, 300
+
+Atcoder bands:
+    - Band 2: 225-350 pts
+    - Band 3: 375-500 pts
+    - Band 4: 525-700 pts
