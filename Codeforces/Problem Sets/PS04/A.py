@@ -39,3 +39,18 @@ if os.path.exists(input_path):
 #     sys.stdin = open("input.txt", "r")
 
 # --- END TEMPLATE --- #
+
+sys.set_int_max_str_digits(int(1e9))
+
+for _ in range(inint()):
+    n, d = invars()
+    fact = int(str(d) * (math.factorial(n)))
+
+    result = []
+    result.append(1)
+
+    for i in range(3, 10, 2):
+        if fact % i == 0:
+            result.append(i)
+
+    print(*result)
