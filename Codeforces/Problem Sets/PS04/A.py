@@ -44,13 +44,57 @@ sys.set_int_max_str_digits(int(1e9))
 
 for _ in range(inint()):
     n, d = invars()
-    fact = int(str(d) * (math.factorial(n)))
-
-    result = []
-    result.append(1)
+    ans = [1]
+    n = min(n, 7)
+    fact = int(str(d) * math.factorial(n))
 
     for i in range(3, 10, 2):
         if fact % i == 0:
-            result.append(i)
+            ans.append(i)
 
-    print(*result)
+    print(*ans)
+
+
+    # if d == 1:
+    #     if n > 2:
+    #         ans += [3, 7]
+    #     if n > 5:
+    #         ans.append(9)
+
+    # elif d == 3:
+    #     ans.append(3)
+    #     if n > 2:
+    #         ans += [7, 9]
+
+    # elif d == 5:
+    #     ans.append(5)
+    #     if n > 2:
+    #         ans += [3, 7]
+    #     if n > 5:
+    #         ans.append(9)
+
+    # elif d == 7:
+    #     ans.append(7)
+    #     if n > 2:
+    #         ans.append(3)
+    #     if n > 5:
+    #         ans.append(9)
+
+    # elif d == 9:
+    #     ans += [3, 9]
+    #     if n > 2:
+    #         ans.append(7)
+
+    # elif d in (2, 4, 8):
+    #     if n > 2:
+    #         ans += [3, 7]
+    #     if n > 5:
+    #         ans.append(9)
+
+    # elif d == 6:
+    #     ans.append(3)
+    #     if n > 2:
+    #         ans += [7, 9]
+            
+    # ans.sort()
+    # print(*ans)
