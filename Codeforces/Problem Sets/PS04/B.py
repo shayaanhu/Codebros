@@ -53,4 +53,4 @@ for _ in range(inint()):
             x //= y
         k -= amount
 
-    print(x + k % (y - 1)) # add the remainder of k modulo (y-1)
+    print(x + k % (y - 1))              # add the remainder of k modulo (y-1)
