@@ -1,4 +1,34 @@
 
+def process_test_case(x, y, k):
+    while k > 0:
+        if x < y:
+            # When x is in the range {1,2,...,y-1}, cycle through the values
+            x = ((x - 1 + k) % (y - 1)) + 1
+            k = 0
+            break
+        
+        remainder = x % y
+        if remainder != y - 1:
+            delta = (y - 1) - remainder
+            if k <= delta:
+                x += k
+                k = 0
+                break
+            else:
+                x += delta
+                k -= delta
+        
+        # Now x % y == y - 1, find highest power of y dividing x+1
+        temp, m = x + 1, 0
+        while temp % y == 0:
+            m += 1
+            temp //= y
+        
+        x = (x + 1) // (y ** m)
+        k -= 1
+    
+    return x
+
 
 for _ in range(int(input())):
     x, y, k = map(int, input().split())
@@ -24,6 +54,16 @@ for _ in range(int(input())):
     # We also store the value resulting in the bound when this happens
     # Then, we can easily calculate what the final value of x would be after k operations
 
-    # However, the above will fail since we might have a very small y and a very large x and k
+    # However, the above will fail when we have a very small y and a very large x and k
     # Consider y = 2, x = 10^8, k = 10^9
     # We can't perform 10^9 operations on x!!!
+
+    print(process_test_case(x, y, k))
+
+    # for i in range(k):
+    #     x += 1
+    #     if pow(x, 1, y) == 0:
+    #         x = x // y
+    #         break
+    # print(x)
+
