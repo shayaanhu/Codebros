@@ -9,14 +9,14 @@ def process_test_case(x, y, k):
         
         remainder = x % y
         if remainder != y - 1:
-            delta = (y - 1) - remainder
-            if k <= delta:
+            val = (y - 1) - remainder
+            if k <= val:
                 x += k
                 k = 0
                 break
             else:
-                x += delta
-                k -= delta
+                x += val
+                k -= val
         
         # Now x % y == y - 1, find highest power of y dividing x+1
         temp, m = x + 1, 0
@@ -67,3 +67,4 @@ for _ in range(int(input())):
     #         break
     # print(x)
 
+# Had to consult a solution online for this one
