@@ -1,10 +1,11 @@
 Bands:
     Band 1: 6+ [COMPLETE]
-    Band 2: 5
+    Band 2: 6  [COMPLETE]
     Band 3: 0
     Band 4: 0
 
 Codeforces lifetime questions completed:
+    - 2A, 2B
     - 2A
     - 4A, 4B, 4C1 and 4C2
     - 2A
