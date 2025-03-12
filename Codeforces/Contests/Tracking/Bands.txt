@@ -5,6 +5,7 @@ Bands:
     Band 4: 0
 
 Codeforces lifetime questions completed:
+    - 3A, 3B, 3C
     - 2A, 2B
     - 2A
     - 4A, 4B, 4C1 and 4C2
