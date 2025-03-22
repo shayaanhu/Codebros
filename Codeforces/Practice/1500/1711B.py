@@ -10,7 +10,7 @@ from collections import Counter, deque
 import time
 
 # -- LOCAL DEBUG SETUP -- #
-LOCAL = "VSCODE_PID" in os.environ
+LOCAL = os.environ.get("TERM_PROGRAM", "").lower() == "vscode"
 
 def debug(*args, **kwargs):
     if LOCAL:
@@ -46,43 +46,42 @@ if os.path.exists(input_path):
 # if os.path.exists("input.txt"):
 #     sys.stdin = open("input.txt", "r")
 
-# -- START TIMER FOR EXECUTION TIME TRACKING (only in local mode) -- #
+# -- START TIMER FOR EXECUTION TIME TRACKING -- #
 if LOCAL:
     start_time = time.perf_counter()
     
 # --- BEGIN PROBLEM LOGIC --- #
 
-MOD = 10**9 + 7
-
-n, m = invars()
-graph = [[] for _ in range(n + 1)]
-
-for _ in range(m):
-    a, b = invars()
-    graph[a].append(b)
-    graph[b].append(a)
-
-shortest_distance = [None] * (n + 1)
-paths = [0] * (n + 1)
-
-shortest_distance[1] = 0
-paths[1] = 1
-
-queue = deque([1])
-while queue:
-    current_city = queue.popleft()
-    for neighbor in graph[current_city]:
-        # if the neighbor hasn't been visited, update distance and path count
-        if shortest_distance[neighbor] is None:
-            shortest_distance[neighbor] = shortest_distance[current_city] + 1
-            paths[neighbor] = paths[current_city]
-            queue.append(neighbor)
-
-        # elif add the path counts
-        elif shortest_distance[neighbor] == shortest_distance[current_city] + 1:
-            paths[neighbor] = (paths[neighbor] + paths[current_city]) % MOD
-
-print(paths[n])
+t = inint()
+for _ in range(t):
+    n, m = invars()
+    costs = inlist()
+    
+    degree = [0] * n
+    
+    edges = []
+    for _ in range(m):
+        u, v = inlist()
+        u -= 1
+        v -= 1
+        degree[u] += 1
+        degree[v] += 1
+        edges.append((u, v))
+    
+    if m % 2 == 0:
+        answer = 0
+    else:
+        answer = float('inf')
+    
+    for i in range(n):
+        if degree[i] % 2 == 1:
+            answer = min(answer, costs[i])
+    
+    for u, v in edges:
+        if degree[u] % 2 == 0 and degree[v] % 2 == 0:
+            answer = min(answer, costs[u] + costs[v])
+    
+    print(answer)
 
 # --- END PROBLEM LOGIC --- #
 

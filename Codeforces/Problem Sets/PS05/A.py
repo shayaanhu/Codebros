@@ -10,11 +10,13 @@ from collections import Counter, deque
 import time
 
 # -- LOCAL DEBUG SETUP -- #
-LOCAL = "VSCODE_PID" in os.environ
+LOCAL = os.environ.get("TERM_PROGRAM", "").lower() == "vscode"
 
 def debug(*args, **kwargs):
     if LOCAL:
         print("DBG:", *args, **kwargs)
+
+debug("TEST")
 
 # -- INPUT SECTION -- #
 
@@ -46,7 +48,7 @@ if os.path.exists(input_path):
 # if os.path.exists("input.txt"):
 #     sys.stdin = open("input.txt", "r")
 
-# -- START TIMER FOR EXECUTION TIME TRACKING (only in local mode) -- #
+# -- START TIMER FOR EXECUTION TIME TRACKING -- #
 if LOCAL:
     start_time = time.perf_counter()
     
@@ -73,14 +75,13 @@ def bfs(maze, start_row, start_col, rows, cols):
                 queue.append((new_row, new_col))
     return visited
 
-test_cases = inint()
-for _ in range(test_cases):
+for _ in range(inint()):
     rows, cols = inlist()
     maze = [list(input().strip()) for _ in range(rows)]
     
     valid_configuration = True
     
-    # Block empty cells adjacent to a bad person.
+    # block empty cells adjacent to a bad person.
     for row in range(rows):
         for col in range(cols):
             if maze[row][col] == 'B':
@@ -94,13 +95,13 @@ for _ in range(test_cases):
                             maze[adj_row][adj_col] = '#'
     
     if not valid_configuration:
-        print("No")
+        print('NO')
         continue
 
-    # Perform BFS starting from the escape cell (bottom-right cell).
+    # perform BFS starting from the escape cell (bottom-right cell).
     visited_cells = bfs(maze, rows - 1, cols - 1, rows, cols)
     
-    # Check that all good persons ('G') can escape and no bad person ('B') can.
+    # check that all good persons ('G') can escape and no bad person ('B') can.
     for row in range(rows):
         for col in range(cols):
             if maze[row][col] == 'G' and not visited_cells[row][col]:
@@ -108,11 +109,11 @@ for _ in range(test_cases):
             if maze[row][col] == 'B' and visited_cells[row][col]:
                 valid_configuration = False
     
-    print("Yes" if valid_configuration else "No")
+    print('YES' if valid_configuration else 'NO')
 
 # --- END PROBLEM LOGIC --- #
 
-# -- PRINT EXECUTION TIME (and memory usage if desired) -- #
+# -- PRINT EXECUTION TIME -- #
 if LOCAL:
     end_time = time.perf_counter()
     print("Execution time:", end_time - start_time, "seconds")
