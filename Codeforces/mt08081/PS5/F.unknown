@@ -1,0 +1,67 @@
+#include<cstring>
+#include<cstdio>
+#include<algorithm>
+using namespace std;
+#define S 100000
+char bf[S],*p1=bf,*p2=bf;
+#define nc() (p1==p2&&(p2=(p1=bf)+fread(bf,1,S,stdin),p2==p1)?-1:*p1++)
+inline int read(){
+	int x=0;char ch=nc();for(;ch<'0'||ch>'9';ch=nc());
+	for(;ch<='9'&&ch>='0';x=x*10+ch-48,ch=nc());return x;
+}char pf[S],*o1=pf,*o2=pf+S;
+#define ot(x) (o1==o2?fwrite(pf,1,S,stdout),*(o1=pf)++=x:*o1++=x)
+inline void print(int x){static char s[15],*b;b=s;if(!x)*b++=48;for(;x;*b++=x%10+48,x/=10);for(;b--!=s;ot(*b));}
+#define N 400020
+#define inf 0x7f7f7f7f
+int i,j,k,m,n,x,y,pre[N],Z,q,rt[N],cnt,l,r;
+struct lct{
+	lct*l,*r,*fa;int mn,v;bool rev;void D(){swap(l,r),rev^=1;}
+	void zag(){
+		lct*y=fa;y->r=l,l->fa=y,l=y,fa=y->fa;
+		if(y->fa->l==y)y->fa->l=this;else if(y->fa->r==y)y->fa->r=this;y->fa=this,y->up();
+	}
+	#define min(a,b) ((a)<(b)?(a):(b))
+	void up(){mn=min(v,min(l->mn,r->mn));}
+	void zig(){
+		lct*y=fa;y->l=r,r->fa=y,r=y;fa=y->fa;
+		if(y->fa->l==y)y->fa->l=this;else if(y->fa->r==y)y->fa->r=this;y->fa=this,y->up();
+	}
+	void down(){if(fa->l==this||fa->r==this)fa->down();if(rev)l->D(),r->D(),rev=0;}
+}C[N],*c=C,Null,*null=&Null;
+#define isrt(o) (o->fa->l==o||o->fa->r==o)
+inline void splay(lct*o){for(o->down();isrt(o);){lct*y=o->fa;o==y->l?o->zig():o->zag();}o->up();}
+inline lct*find(lct*o){int x=o-c;for(;(c+x)->fa!=null;)x=(c+x)->fa-c;return c+x;}
+inline void access(lct*o){for(lct*y=null;o!=null;splay(o),o->r=y,o->up(),y=o,o=o->fa);}
+inline void mkrt(lct*o){access(o),splay(o),o->D();}
+inline void link(lct*x,lct*y){mkrt(y),y->fa=x;}
+inline int ask(lct*x,lct*y){return mkrt(x),access(y),splay(y),y->mn;}
+inline void cut(lct*x,lct*y){mkrt(x),access(y),splay(y);if(y->l==x)x->fa=null,y->l=null,y->up();}
+struct edge{int x,y;void in(){x=read(),y=read();}}e[N];
+struct tree{int l,r,v;}T[N*80];
+void add(int&y,int k,int l,int r,int v){
+	if(T[y=++cnt].v=T[k].v+1,l==r)return;
+	T[y].l=T[k].l,T[y].r=T[k].r;int m=l+r>>1;
+	v<=m?add(T[y].l,T[k].l,l,m,v):add(T[y].r,T[k].r,m+1,r,v);	
+}
+inline int query(int y,int k,int v){
+	int ans=0,l=0,r=m;for(;l<r;){
+		int m=l+r>>1;
+		if(m<=v)ans+=T[T[y].l].v-T[T[k].l].v,y=T[y].r,k=T[k].r,l=m+1;
+		else y=T[y].l,k=T[k].l,r=m;
+	}return ans;
+}
+int main(){
+	for(null->mn=inf,Z=read();Z--;){
+		for(n=read(),m=read(),q=read(),i=1;i<=m;++i)e[i].in();
+		for(i=1;i<=n+m;++i)if((c+i)->l=(c+i)->r=(c+i)->fa=null,i<=n)(c+i)->mn=(c+i)->v=inf;else (c+i)->mn=(c+i)->v=i-n;
+		for(i=1;i<=m;++i)pre[i]=0;
+		for(i=1;i<=m;++i)if(e[i].x!=e[i].y){
+			lct*p=find(c+e[i].x),*q=find(c+e[i].y);
+			if(p==q)pre[i]=ask(c+e[i].x,c+e[i].y),cut(c+n+pre[i],c+e[pre[i]].x),cut(c+n+pre[i],c+e[pre[i]].y);
+			link(c+n+i,c+e[i].x),link(c+n+i,c+e[i].y);
+		}else pre[i]=i;
+		for(cnt=0,i=1;i<=m;++i)add(rt[i],rt[i-1],0,m,pre[i]);
+		for(;q--;)l=read(),r=read(),print(n-query(rt[r],rt[l-1],l-1)),ot('\n');
+	}
+	fwrite(pf,1,o1-pf,stdout);
+}
