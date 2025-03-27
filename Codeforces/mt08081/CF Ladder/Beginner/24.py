@@ -15,19 +15,26 @@ for _ in range(int(input())):
     #         print(i + 1)
     #         break
 
+    # mx = a[0]
+    # mx2 = a[1]
+    # pair = mx + mx2
+    # turns = (H // pair) * 2
+    # # turns = 0
+    # rem = H % pair
+
+    # if rem == 0:
+    #     print(turns)
+    # elif rem <= mx:
+    #     print(turns + 1)
+    # else:
+    #     print(turns + 2)
+
+    # Approach number 2
     mx = a[0]
     mx2 = a[1]
-    pair = mx + mx2
-    turns = (H // pair) * 2
-    # turns = 0
-    rem = H % pair
-
-    if rem == 0:
-        print(turns)
-    elif rem <= mx:
-        print(turns + 1)
-    else:
-        print(turns + 2)
+    calc = H % (mx + mx2)
+    calc2 = 2 * (-(-H//(mx+mx2)))
+    print(calc2) if calc <= 0 else print(calc2 + 1)
 
     # while H > 0:
     #     if turns % 2 == 0:
