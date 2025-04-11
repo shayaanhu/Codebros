@@ -53,24 +53,25 @@ if LOCAL:
     
 # --- BEGIN PROBLEM LOGIC --- #
 
-MOD = 10 ** 9 + 7
+n = inint()
+prices = inlist()
 
-def max_subarray(arr):
-    cur = best = arr[0]
-    for x in arr[1:]:
-        cur = max(x, cur + x)
-        best = max(best, cur)
-    return best
+max_price = 100000
 
-for _ in range(inint()):
-    n, k = invars()
-    a = inlist()
-    
-    s = sum(a)
-    maxsum = max(0, max_subarray(a))
-    
-    final_sum = (s + (pow(2, k, MOD) - 1) * maxsum) % MOD
-    print(final_sum)
+freq = [0] * (max_price + 1)
+for price in prices:
+    freq[price] += 1
+
+for i in range(1, max_price + 1):
+    freq[i] += freq[i - 1]
+
+q = inint()
+for _ in range(q):
+    m = int(input())
+    if m > max_price:
+        print(n)
+    else:
+        print(freq[m])
 
 # --- END PROBLEM LOGIC --- #
 

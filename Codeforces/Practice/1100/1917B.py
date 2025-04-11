@@ -7,7 +7,6 @@ import os
 import math
 import bisect
 from collections import Counter, deque
-from itertools import accumulate
 import time
 
 # -- LOCAL DEBUG SETUP -- #
@@ -53,24 +52,7 @@ if LOCAL:
     
 # --- BEGIN PROBLEM LOGIC --- #
 
-MOD = 10 ** 9 + 7
 
-def max_subarray(arr):
-    cur = best = arr[0]
-    for x in arr[1:]:
-        cur = max(x, cur + x)
-        best = max(best, cur)
-    return best
-
-for _ in range(inint()):
-    n, k = invars()
-    a = inlist()
-    
-    s = sum(a)
-    maxsum = max(0, max_subarray(a))
-    
-    final_sum = (s + (pow(2, k, MOD) - 1) * maxsum) % MOD
-    print(final_sum)
 
 # --- END PROBLEM LOGIC --- #
 
