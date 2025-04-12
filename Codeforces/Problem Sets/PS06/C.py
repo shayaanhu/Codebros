@@ -55,10 +55,17 @@ if LOCAL:
 n, x = invars()
 a = inlist()
 
-MAX_N = (10 ** 6) + 1
-DP = [0] * MAX_N
-DP[0] = 1
+MAX = (10 ** 6) + 1
+DP = [MAX] * (x + 1)
+DP[0] = 0
 
+for i in range(x + 1):
+    if DP[i] != MAX:
+        for coin in a:
+            if i + coin <= x:
+                DP[i + coin] = min(DP[i + coin], DP[i] + 1) # i + 1 because one more coin
+
+print(-1 if DP[x] == MAX else DP[x])
         
 # --- END PROBLEM LOGIC --- #
 
