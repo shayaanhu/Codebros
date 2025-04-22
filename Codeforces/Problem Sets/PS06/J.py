@@ -55,18 +55,27 @@ if LOCAL:
 n, w = invars()
 
 items = []
+total_value = 0
 for _ in range(n):
     wi, vi = invars()
     items.append((wi, vi))
+    total_value += vi
 
-dp = [0] * (w + 1)
+dp = [w + 1] * (total_value + 1)
+dp[0] = 0
 
-# 0/1 knapsack DP: for each item, traverse weights backwards
 for wi, vi in items:
-    for j in range(w, wi - 1, -1):
-        dp[j] = max(dp[j], dp[j - wi] + vi)
+    for v in range(total_value, vi - 1, -1):
+        cv = dp[v - vi] + wi
+        if cv < dp[v]:
+            dp[v] = cv
 
-print(dp[w])
+ans = 0
+for v in range(total_value + 1):
+    if dp[v] <= w:
+        ans = v
+
+print(ans)
 
 # --- END PROBLEM LOGIC --- #
 

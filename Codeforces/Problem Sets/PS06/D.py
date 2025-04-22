@@ -52,21 +52,23 @@ if LOCAL:
     
 # --- BEGIN PROBLEM LOGIC --- #
 
-n, w = invars()
+n, k = invars()
+h = inlist()
 
-items = []
-for _ in range(n):
-    wi, vi = invars()
-    items.append((wi, vi))
+dp = [0] * n
 
-dp = [0] * (w + 1)
+for i in range(1, n):
+    # start with jump from previous stone
+    dp[i] = dp[i - 1] + abs(h[i] - h[i - 1])
 
-# 0/1 knapsack DP: for each item, traverse weights backwards
-for wi, vi in items:
-    for j in range(w, wi - 1, -1):
-        dp[j] = max(dp[j], dp[j - wi] + vi)
+    # try jumps from 2 to k stones back
+    for j in range(2, k + 1):
+        if j <= i:
+            cost = dp[i - j] + abs(h[i] - h[i - j])
+            if cost < dp[i]:
+                dp[i] = cost
 
-print(dp[w])
+print(dp[n - 1])
 
 # --- END PROBLEM LOGIC --- #
 

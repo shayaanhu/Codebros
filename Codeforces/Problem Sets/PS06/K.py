@@ -52,21 +52,31 @@ if LOCAL:
     
 # --- BEGIN PROBLEM LOGIC --- #
 
-n, w = invars()
+MOD = 10**9 + 7
 
-items = []
+n = inint()
+
+grid = []
 for _ in range(n):
-    wi, vi = invars()
-    items.append((wi, vi))
+    grid.append(input())
 
-dp = [0] * (w + 1)
+dp = [[0] * n for _ in range(n)]
+dp[0][0] = 1 if grid[0][0] == '.' else 0
 
-# 0/1 knapsack DP: for each item, traverse weights backwards
-for wi, vi in items:
-    for j in range(w, wi - 1, -1):
-        dp[j] = max(dp[j], dp[j - wi] + vi)
+for i in range(n):
+    for j in range(n):
+        if grid[i][j] == '*':
+            continue
+            
+        # each cell, the number of paths is the sum of paths
+        # from the cell above and the cell to the left
+        if i > 0:
+            dp[i][j] = (dp[i][j] + dp[i - 1][j]) % MOD
+            
+        if j > 0:
+            dp[i][j] = (dp[i][j] + dp[i][j - 1]) % MOD
 
-print(dp[w])
+print(dp[n - 1][n - 1])
 
 # --- END PROBLEM LOGIC --- #
 

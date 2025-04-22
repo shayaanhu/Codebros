@@ -52,21 +52,21 @@ if LOCAL:
     
 # --- BEGIN PROBLEM LOGIC --- #
 
-n, w = invars()
+n = inint()
 
-items = []
-for _ in range(n):
-    wi, vi = invars()
-    items.append((wi, vi))
+INF = 10**9
+dp = [INF] * (n + 1)
+dp[0] = 0
 
-dp = [0] * (w + 1)
+for i in range(1, n + 1):
+    x = i
+    while x > 0:
+        y = x % 10
+        x = x // 10
+        if y > 0:
+            dp[i] = min(dp[i], dp[i - y] + 1) 
 
-# 0/1 knapsack DP: for each item, traverse weights backwards
-for wi, vi in items:
-    for j in range(w, wi - 1, -1):
-        dp[j] = max(dp[j], dp[j - wi] + vi)
-
-print(dp[w])
+print(dp[n])            
 
 # --- END PROBLEM LOGIC --- #
 

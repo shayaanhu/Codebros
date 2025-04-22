@@ -52,21 +52,16 @@ if LOCAL:
     
 # --- BEGIN PROBLEM LOGIC --- #
 
-n, w = invars()
+n = inint()
+h = inlist()
 
-items = []
-for _ in range(n):
-    wi, vi = invars()
-    items.append((wi, vi))
+dp = [0] * n
+dp[1] = abs(h[1] - h[0])
 
-dp = [0] * (w + 1)
+for i in range(2, n):
+    dp[i] = min(dp[i - 1] + abs(h[i] - h[i - 1]), dp[i - 2] + abs(h[i] - h[i - 2]))
 
-# 0/1 knapsack DP: for each item, traverse weights backwards
-for wi, vi in items:
-    for j in range(w, wi - 1, -1):
-        dp[j] = max(dp[j], dp[j - wi] + vi)
-
-print(dp[w])
+print(dp[n - 1])
 
 # --- END PROBLEM LOGIC --- #
 
