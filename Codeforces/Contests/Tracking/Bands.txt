@@ -1,25 +1,27 @@
 Bands:
     Band 1: 8+ [COMPLETE]
     Band 2: 7+ [COMPLETE]
-    Band 3: 4
-    Band 4: 0
+    Band 3: 4  
+    Band 4: 4  [COMPLETE]
 
 Codeforces lifetime questions completed:
-    - 3F, 3G
-    - 2A, 2B, 2C
-    - 3A, 3B, 3C, 3D, 3E
-    - 3A, 3B, 3C
-    - 2A, 2B
-    - 2A
-    - 4A, 4B, 4C1 and 4C2
-    - 2A
-    - 1+2A, 1+2B
-    - 3A, 3C
+    1017 - 4G, 4H
+    1016 - 3F, 3G
+    EDU 177 - 2A, 2B, 2C
+    1013 - 3A, 3B, 3C, 3D, 3E
+    1009 - 3A, 3B, 3C
+    1008 - 2A, 2B
+    1006 - 3A
+    1005 - 2A
+    1003 - 4A, 4B, 4C1 and 4C2
+    1000 - 2A
+    1001 - 1+2A, 1+2B
+    998 - 3A, 3C
 
 Atcoder lifetime questions completed:
-    - 400
-    - 300
-    - 100, 200, 300
+    400 - 400
+    396 - 300
+    395 - 100, 200, 300
 
 Atcoder bands:
     - Band 2: 225-350 pts
